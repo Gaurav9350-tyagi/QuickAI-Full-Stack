@@ -11,7 +11,7 @@ const Plan = () => {
       </div>
 
       <div className='mt-14 max-sm:mx-8'>
-        <PricingTable />
+        <div>Premium Plans Coming Soon</div>
       </div>
 
     </div>
