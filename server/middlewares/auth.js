@@ -17,7 +17,8 @@ export const auth = async (req, res, next) => {
             });
         }
 
-        const hasPremiumPlan = await has({ plan: "premium" });
+        //const hasPremiumPlan = await has({ plan: "premium" });
+        const hasPremiumPlan = false;
 
         const user = await clerkClient.users.getUser(userId);
 
