@@ -23,6 +23,14 @@ app.use(express.json())
 
 app.get('/', (req, res)=>res.send('Server is Live!'))
 
+app.get('/version', (req, res) => {
+    res.json({
+        commit:'Disable clerk Middleware test'
+    })
+})
+
+
+
 //app.use(requireAuth())
 
 app.use('/api/ai', aiRouter)
