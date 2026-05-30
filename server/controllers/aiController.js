@@ -72,6 +72,8 @@ export const generateBlogTitle = async (req, res)=>{
         if(plan !== 'premium' && free_usage >= 10){
             return res.json({ success: false, message: "Limit reached. Upgrade to continue."})
         }
+        console.log("Using Gemini key length:", process.env.GEMINI_API_KEY?.length);
+        console.log("Calling model: gemini-1.5-flash");
 
         const response = await AI.chat.completions.create({
             model: "gemini-1.5-flash",
