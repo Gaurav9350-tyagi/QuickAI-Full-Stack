@@ -10,13 +10,20 @@ const app = express()
 
 await connectCloudinary()
 
-app.use(cors())
+//app.use(cors())
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'https://quick-ai-full-stack-7jrr-r4lutwan5.vercel.app'
+  ],
+  credentials: true
+}))
 app.use(express.json())
 app.use(clerkMiddleware())
 
 app.get('/', (req, res)=>res.send('Server is Live!'))
 
-app.use(requireAuth())
+//app.use(requireAuth())
 
 app.use('/api/ai', aiRouter)
 app.use('/api/user', userRouter)
