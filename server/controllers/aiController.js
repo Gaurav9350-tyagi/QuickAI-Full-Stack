@@ -50,9 +50,16 @@ export const generateArticle = async (req, res)=>{
 
 
     } catch (error) {
-        console.log(error.message)
-        res.json({success: false, message: error.message})
-    }
+    console.log("FULL ERROR:", error);
+    console.log("MESSAGE:", error.message);
+    console.log("STATUS:", error.status);
+    console.log("RESPONSE:", error.response?.data);
+
+    res.json({
+        success: false,
+        message: error.message
+    });
+}
 }
 
 export const generateBlogTitle = async (req, res)=>{
@@ -90,9 +97,16 @@ export const generateBlogTitle = async (req, res)=>{
 
 
     } catch (error) {
-        console.log(error.message)
-        res.json({success: false, message: error.message})
-    }
+    console.log("FULL ERROR:", error);
+    console.log("MESSAGE:", error.message);
+    console.log("STATUS:", error.status);
+    console.log("RESPONSE:", error.response?.data);
+
+    res.json({
+        success: false,
+        message: error.message
+    });
+}
 }
 
 
@@ -125,9 +139,16 @@ export const generateImage = async (req, res)=>{
         res.json({ success: true, content: secure_url})
 
     } catch (error) {
-        console.log(error.message)
-        res.json({success: false, message: error.message})
-    }
+    console.log("FULL ERROR:", error);
+    console.log("MESSAGE:", error.message);
+    console.log("STATUS:", error.status);
+    console.log("RESPONSE:", error.response?.data);
+
+    res.json({
+        success: false,
+        message: error.message
+    });
+}
 }
 
 export const removeImageBackground = async (req, res)=>{
@@ -155,9 +176,16 @@ export const removeImageBackground = async (req, res)=>{
         res.json({ success: true, content: secure_url})
 
     } catch (error) {
-        console.log(error.message)
-        res.json({success: false, message: error.message})
-    }
+    console.log("FULL ERROR:", error);
+    console.log("MESSAGE:", error.message);
+    console.log("STATUS:", error.status);
+    console.log("RESPONSE:", error.response?.data);
+
+    res.json({
+        success: false,
+        message: error.message
+    });
+}
 }
 
 export const removeImageObject = async (req, res)=>{
@@ -184,9 +212,16 @@ export const removeImageObject = async (req, res)=>{
         res.json({ success: true, content: imageUrl})
 
     } catch (error) {
-        console.log(error.message)
-        res.json({success: false, message: error.message})
-    }
+    console.log("FULL ERROR:", error);
+    console.log("MESSAGE:", error.message);
+    console.log("STATUS:", error.status);
+    console.log("RESPONSE:", error.response?.data);
+
+    res.json({
+        success: false,
+        message: error.message
+    });
+}
 }
 
 export const resumeReview = async (req, res)=>{
@@ -223,7 +258,14 @@ export const resumeReview = async (req, res)=>{
         res.json({ success: true, content})
 
     } catch (error) {
-        console.log(error.message)
-        res.json({success: false, message: error.message})
-    }
+    console.log("FULL ERROR:", error);
+    console.log("MESSAGE:", error.message);
+    console.log("STATUS:", error.status);
+    console.log("RESPONSE:", error.response?.data);
+
+    res.json({
+        success: false,
+        message: error.message
+    });
+}
 }
