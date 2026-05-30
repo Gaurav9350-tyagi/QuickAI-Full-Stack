@@ -14,7 +14,7 @@ await connectCloudinary()
 app.use(cors({
   origin: [
     'http://localhost:5173',
-    'https://quick-ai-full-stack-7jrr-r4lutwan5.vercel.app'
+    'https://quick-ai-full-stack-7jrr.vercel.app'
   ],
   credentials: true
 }))
