@@ -7,8 +7,8 @@ import fs from 'fs'
 import pdf from 'pdf-parse/lib/pdf-parse.js'
 
 const AI = new OpenAI({
-    apiKey: process.env.GEMINI_API_KEY,
-    baseURL: "https://generativelanguage.googleapis.com/v1beta/openai"
+    apiKey: process.env.GROQ_API_KEY,
+    baseURL: "https://api.groq.com/openai/v1"
 });
 
 export const generateArticle = async (req, res)=>{
@@ -23,7 +23,7 @@ export const generateArticle = async (req, res)=>{
         }
 
         const response = await AI.chat.completions.create({
-            model: "gemini-1.5-flash",
+            model: "llama-3.3-70b-versatile",
             messages: [{
                     role: "user",
                     content: prompt,
@@ -51,14 +51,7 @@ export const generateArticle = async (req, res)=>{
 
     } catch (error) {
     console.log("FULL ERROR:", error);
-    console.log("MESSAGE:", error.message);
-    console.log("STATUS:", error.status);
-    console.log("RESPONSE:", error.response?.data);
-
-    res.json({
-        success: false,
-        message: error.message
-    });
+    res.json({ success: false, message: error.message });
 }
 }
 
@@ -72,12 +65,10 @@ export const generateBlogTitle = async (req, res)=>{
         if(plan !== 'premium' && free_usage >= 10){
             return res.json({ success: false, message: "Limit reached. Upgrade to continue."})
         }
-        console.log("Using Gemini key length:", process.env.GEMINI_API_KEY?.length);
-        console.log("Calling model: gemini-1.5-flash");
 
         const response = await AI.chat.completions.create({
-            model: "gemini-1.5-flash",
-            messages: [{ role: "user", content: prompt, } ],
+            model: "llama-3.3-70b-versatile",  // ✅ fixed
+            messages: [{ role: "user", content: prompt }],
             temperature: 0.7,
             max_tokens: 100,
         });
@@ -100,14 +91,7 @@ export const generateBlogTitle = async (req, res)=>{
 
     } catch (error) {
     console.log("FULL ERROR:", error);
-    console.log("MESSAGE:", error.message);
-    console.log("STATUS:", error.status);
-    console.log("RESPONSE:", error.response?.data);
-
-    res.json({
-        success: false,
-        message: error.message
-    });
+    res.json({ success: false, message: error.message });
 }
 }
 
@@ -122,7 +106,6 @@ export const generateImage = async (req, res)=>{
             return res.json({ success: false, message: "This feature is only available for premium subscriptions"})
         }
 
-        
         const formData = new FormData()
         formData.append('prompt', prompt)
         const {data} = await axios.post("https://clipdrop-api.co/text-to-image/v1", formData, {
@@ -133,7 +116,6 @@ export const generateImage = async (req, res)=>{
         const base64Image = `data:image/png;base64,${Buffer.from(data, 'binary').toString('base64')}`;
 
         const {secure_url} = await cloudinary.uploader.upload(base64Image)
-        
 
         await sql` INSERT INTO creations (user_id, prompt, content, type, publish) 
         VALUES (${userId}, ${prompt}, ${secure_url}, 'image', ${publish ?? false })`;
@@ -142,14 +124,7 @@ export const generateImage = async (req, res)=>{
 
     } catch (error) {
     console.log("FULL ERROR:", error);
-    console.log("MESSAGE:", error.message);
-    console.log("STATUS:", error.status);
-    console.log("RESPONSE:", error.response?.data);
-
-    res.json({
-        success: false,
-        message: error.message
-    });
+    res.json({ success: false, message: error.message });
 }
 }
 
@@ -179,14 +154,7 @@ export const removeImageBackground = async (req, res)=>{
 
     } catch (error) {
     console.log("FULL ERROR:", error);
-    console.log("MESSAGE:", error.message);
-    console.log("STATUS:", error.status);
-    console.log("RESPONSE:", error.response?.data);
-
-    res.json({
-        success: false,
-        message: error.message
-    });
+    res.json({ success: false, message: error.message });
 }
 }
 
@@ -215,14 +183,7 @@ export const removeImageObject = async (req, res)=>{
 
     } catch (error) {
     console.log("FULL ERROR:", error);
-    console.log("MESSAGE:", error.message);
-    console.log("STATUS:", error.status);
-    console.log("RESPONSE:", error.response?.data);
-
-    res.json({
-        success: false,
-        message: error.message
-    });
+    res.json({ success: false, message: error.message });
 }
 }
 
@@ -246,8 +207,8 @@ export const resumeReview = async (req, res)=>{
         const prompt = `Review the following resume and provide constructive feedback on its strengths, weaknesses, and areas for improvement. Resume Content:\n\n${pdfData.text}`
 
        const response = await AI.chat.completions.create({
-            model: "gemini-1.5-flash",
-            messages: [{ role: "user", content: prompt, } ],
+            model: "llama-3.3-70b-versatile",  // ✅ fixed
+            messages: [{ role: "user", content: prompt }],
             temperature: 0.7,
             max_tokens: 1000,
         });
@@ -261,13 +222,6 @@ export const resumeReview = async (req, res)=>{
 
     } catch (error) {
     console.log("FULL ERROR:", error);
-    console.log("MESSAGE:", error.message);
-    console.log("STATUS:", error.status);
-    console.log("RESPONSE:", error.response?.data);
-
-    res.json({
-        success: false,
-        message: error.message
-    });
+    res.json({ success: false, message: error.message });
 }
 }
