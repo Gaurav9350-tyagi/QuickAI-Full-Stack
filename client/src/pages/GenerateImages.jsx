@@ -25,7 +25,17 @@ const GenerateImages = () => {
 
           const prompt = `Generate an image of ${input} in the style ${selectedStyle}`
 
-          const { data } = await axios.post('/api/ai/generate-image', {prompt, publish}, {headers: {Authorization: `Bearer ${await getToken()}`}})
+          const token = await getToken();
+          console.log("Token:", token);
+          const {data} = await axios.post(
+            '/api/ai/generate-image',
+            {prompt , publish},
+            {
+              headers:{
+                Authorization:  `Bearer ${token}`
+              }
+            }
+          );
 
          if (data.success) {
           setContent(data.content)
