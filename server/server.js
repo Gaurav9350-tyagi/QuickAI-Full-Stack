@@ -29,6 +29,13 @@ app.get('/version', (req, res) => {
     })
 })
 
+app.get('/test-key', (req, res) => {
+  res.json({
+    keyExists: !!process.env.GEMINI_API_KEY,
+    keyLength: process.env.GEMINI_API_KEY?.length || 0
+  })
+})
+
 
 
 //app.use(requireAuth())
