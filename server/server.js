@@ -21,7 +21,7 @@ app.use(cors({
 app.use(express.json())
 //app.use(clerkMiddleware())
 
-app.get('/', (req, res)=>res.send('Server is Live!'))
+//app.get('/', (req, res)=>res.send('Server is Live!'))
 
 app.get('/version', (req, res) => {
     res.json({
