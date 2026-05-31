@@ -1,10 +1,10 @@
-QuickAI – AI-Powered Content & Image Generation Platform
+### QuickAI – AI-Powered Content & Image Generation Platform
 
 A modern full-stack AI SaaS application that enables users to generate articles, blog titles, AI images, remove image backgrounds, remove unwanted objects, and analyze resumes using cutting-edge AI technology.
 
 [Live Demo]: https://quick-ai-full-stack-7jrr-r4lutwan5.vercel.app/
 
-About The Project
+### About The Project
 
 QuickAI is a feature-rich AI-powered SaaS platform designed to simplify content creation and image editing workflows. The application combines multiple AI tools into a single intuitive dashboard, allowing users to generate high-quality content, create AI-generated images, perform advanced image editing, and receive professional resume feedback.
 Built with a modern React frontend and Node.js backend, QuickAI demonstrates full-stack development skills including authentication, API integration, cloud storage, AI services, and responsive UI design.
