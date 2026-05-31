@@ -164,5 +164,6 @@ http://localhost:5173
 
 Create an account or sign in to access the AI-powered tools, including article generation, blog title generation, image generation, image editing, and resume analysis.
 
-Author
-Gaurav Tyagi
+## Author
+
+### Gaurav Tyagi
